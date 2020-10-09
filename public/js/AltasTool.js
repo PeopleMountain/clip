@@ -12,8 +12,8 @@ class AltasTool{
     saveRectByIndex(i){
         let data = this.data[i]
         let ctx = this.copyCanvas.getContext("2d");
-        let width = data.right - data.left;
-        let height = data.bottom - data.top;
+        let width = data.right +1 - data.left;
+        let height = data.bottom +1 - data.top;
         this.copyCanvas.width = width;
         this.copyCanvas.height = height;
         ctx.drawImage(this.img,-data.left,-data.top,this.img.width,this.img.height)
