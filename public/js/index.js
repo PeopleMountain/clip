@@ -79,8 +79,12 @@ function cancel(){
 }
 function downloadImg(){
     let index = target.checkPointInRect(contextmenuPoint.x,contextmenuPoint.y);
-    let dataURL = target.saveRectByIndex(index);
-    this.saveToServer(dataURL,index)
+    if(index>-1){
+        let dataURL = target.saveRectByIndex(index);
+        this.saveToServer(dataURL,index)
+    } else {
+        showTip("未发现图片")
+    }
 }
 function saveToServer(dataURL,name){
     let data = {
@@ -90,7 +94,8 @@ function saveToServer(dataURL,name){
         fileName:fileName
     }
     data = JSON.stringify(data);
-    SaveNet.saveFile(data,()=>{
+    SaveNet.saveFile(data,(result)=>{
+        showTip("储存成功"+result)
     })
 }
 function downloadAllImg(){
@@ -165,4 +170,28 @@ function update(){
     requestAnimationFrame(()=>{
         update();
     })
+}
+function showAlert(evt){
+    `<div class="my-alert">
+        <p>提示</p>
+        <hr>
+        <div>
+            提示内容
+        </div>
+    </div>`
+}
+function showTip(str){
+    let div = document.createElement("div")
+    div.innerHTML = `
+    <div class="tips">
+        <div class="tips-vlaue">
+            <span>消息提示：${str}</span>
+            <span>123456</span>
+        </div>
+    </div>`;
+    document.body.appendChild(div)
+    setTimeout(() => {
+        Animation
+        div.remove();
+    }, 2000);
 }

@@ -6,13 +6,14 @@ var SaveNet ={
         xhr.onreadystatechange = ()=>{
             if(xhr.readyState == 4){
                 if(xhr.status == 200){
-                    callback();
+                    callback(xhr.responseText);
                 } else {
                     console.warn('err')
                 }
             }
         }
-        xhr.responseType = "json"
+        
+        xhr.responseType = "text"
         xhr.open("post",url,true)
         xhr.send(data)
     }
