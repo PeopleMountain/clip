@@ -113,3 +113,5 @@ class AltasTool{
         return [mateTarget,changeImgArr]
     }
 }
+
+module.exports = AltasTool;

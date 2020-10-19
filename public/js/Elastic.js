@@ -1,9 +1,4 @@
-class Point{
-    constructor(){
-        this.x = null;
-        this.y = null;
-    }
-}
+const Point = require("./Point")
 class Elastic{
     constructor(){
         this.startPoint = new Point();
@@ -30,3 +25,5 @@ class Elastic{
         this.endPoint.y = null;
     }
 }
+
+    module.exports = Elastic;

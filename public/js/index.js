@@ -1,3 +1,9 @@
+const Elastic = require("./Elastic")
+const Point = require("./Point")
+const AltasTool = require("./AltasTool")
+const ChoseRect = require("./cmd")
+const JszipTool = require("./JszipTool")
+const ClipTool = require("./clip")
 var menu = document.getElementById('menu')
 var myMenu = document.getElementById("contextmenu")
 var canvas = document.getElementById("canvas");
@@ -65,19 +71,19 @@ function initContextMenu(){
     })
 }
 
-function reset(){
+window.reset = function reset(){
     ctx.clearRect(0,0,canvas.width,canvas.height); 
     menu.hidden = false;
     clearTarget();
 }
-function cancel(){
+window.cancel = function cancel(){
     if(cmdStack.length){
         let cmd = cmdStack.pop();
         cmd.restore();
     }
     elastic.clear();
 }
-function downloadImg(){
+window.downloadImg = function downloadImg(){
     let tool = new JszipTool()
     let index = target.checkPointInRect(contextmenuPoint.x,contextmenuPoint.y);
     if(index>-1){
@@ -90,7 +96,7 @@ function downloadImg(){
     }
 }
 
-function downloadAllImg(){
+window.downloadAllImg = function downloadAllImg(){
     let tool = new JszipTool()
     let data = target.data;
     let length = data.length;
@@ -114,7 +120,7 @@ function getSaveData(dataURL,name){
     }
     return data;
 }
-function loadPng(input){
+window.loadPng = function loadPng(input){
     var file = input.files[0];
     fileName = file.name.replace(".png","")
     input.value = null;
@@ -142,7 +148,7 @@ function loadPng(input){
     reader.readAsDataURL(file);
 }
 
-function drawRect(ctx,top,bottom,left,right,color){
+window.drawRect = function drawRect(ctx,top,bottom,left,right,color){
     ctx.beginPath();
     ctx.moveTo(left,top);
     ctx.strokeStyle = color || "#ff0000";
@@ -170,7 +176,7 @@ function update(){
         ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height)
         target.update();
         drawElastic();
-        while(this.cmdArr.length){
+        while(cmdArr.length){
             let cmd = cmdArr.shift();
             cmd.exe();
             cmdStack.push(cmd);

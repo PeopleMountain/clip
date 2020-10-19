@@ -1,3 +1,5 @@
+const {saveAs} = require("./FileSaver")
+const JSZip = require("./jszip.min")
 function JszipTool(){
 
 }
@@ -26,3 +28,4 @@ JszipTool.prototype.saveFileArr = function(arr,callback){
         callback(name)
     });
 }
+module.exports = JszipTool;

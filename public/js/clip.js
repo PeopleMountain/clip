@@ -263,3 +263,4 @@ class ClipTool{
     }
     
 }
+module.exports = ClipTool;
