@@ -78,33 +78,41 @@ function cancel(){
     elastic.clear();
 }
 function downloadImg(){
+    let tool = new JszipTool()
     let index = target.checkPointInRect(contextmenuPoint.x,contextmenuPoint.y);
     if(index>-1){
         let dataURL = target.saveRectByIndex(index);
-        this.saveToServer(dataURL,index)
+        let data = getSaveData(dataURL,index)
+        tool.saveFile(data.name,"png",dataURL)
+        showTip("储存成功")
     } else {
         showTip("未发现图片")
     }
 }
-function saveToServer(dataURL,name){
+
+function downloadAllImg(){
+    let tool = new JszipTool()
+    let data = target.data;
+    let length = data.length;
+    let arr = [];
+    for(let i = 0;i<length;i++){
+        let dataURL = target.saveRectByIndex(i);
+        let data = getSaveData(dataURL,i);
+        arr.push(data);
+    }
+    showTip("loading...请等待")
+    tool.saveFileArr(arr,(name)=>{
+        showTip("储存成功" + name)
+    })
+}
+function getSaveData(dataURL,name){
     let data = {
         type:"image",
         name:"a_"+name,
         data:dataURL,
         fileName:fileName
     }
-    data = JSON.stringify(data);
-    SaveNet.saveFile(data,(result)=>{
-        showTip("储存成功"+result)
-    })
-}
-function downloadAllImg(){
-    let data = target.data;
-    let length = data.length;
-    for(let i = 0;i<length;i++){
-        let dataURL = target.saveRectByIndex(i);
-        this.saveToServer(dataURL,i);
-    }
+    return data;
 }
 function loadPng(input){
     var file = input.files[0];
@@ -133,6 +141,7 @@ function loadPng(input){
     }
     reader.readAsDataURL(file);
 }
+
 function drawRect(ctx,top,bottom,left,right,color){
     ctx.beginPath();
     ctx.moveTo(left,top);
@@ -171,6 +180,7 @@ function update(){
         update();
     })
 }
+
 function showAlert(evt){
     `<div class="my-alert">
         <p>提示</p>
@@ -186,7 +196,6 @@ function showTip(str){
     <div class="tips">
         <div class="tips-vlaue">
             <span>消息提示：${str}</span>
-            <span>123456</span>
         </div>
     </div>`;
     document.body.appendChild(div)

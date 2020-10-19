@@ -17,7 +17,7 @@ class AltasTool{
         this.copyCanvas.width = width;
         this.copyCanvas.height = height;
         ctx.drawImage(this.img,-data.left,-data.top,this.img.width,this.img.height)
-        return this.copyCanvas.toDataURL("png",1)
+        return this.copyCanvas.toDataURL("image/png")
     }
     drawRect(){
         let r = this.data;
