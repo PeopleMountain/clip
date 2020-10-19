@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>拆图集工具</title>
-    <style>
-        body,html{
+<!doctype html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>拆图集工具</title><style>body,html{
             padding: 0;
             margin: 0;
             /* overflow-x: hidden;  */
@@ -63,45 +56,4 @@
         .tips-vlaue{
             margin: auto;
             text-align: center;
-        }
-    </style>
-    <!-- <script src="./js/jszip.min.js"></script>
-    <script src="./js/FileSaver.js"></script> -->
-</head>
-<body>
-    <canvas id="canvas"></canvas>
-    <div id="menu">
-        <div style="position:fixed;top:0px;left:0px;color: blue;">Author doudou</div>
-        <div  style="position: absolute;top: 50px;">
-            <div style="color: crimson;">
-                说明<br>
-                点击上传图片，选择一张需要裁切的图集<br>
-                鼠标左键框选需要合并的图片<br>
-                鼠标右键呼出菜单<br>
-            </div>
-            <div style="position: relative;top: 50px; width: 100px;height:50px;background-color: deepskyblue;border-radius: 5px;">
-                <div style="color: white;text-align: center;line-height: 50px;">
-                    上传图片
-                </div>
-                <input id="upload" type="file" name="" id="" accept="image/png" 
-                style="position: absolute;top:0;width: 100%;height:100%;opacity: 0;" onchange="loadPng(this)"/>
-            </div>
-        </div>
-    </div>
-    <ul id="contextmenu">
-        <li onclick="downloadImg()">下载此图片</li>
-        <li onclick="downloadAllImg()">下载所有图片</li>
-        <li onclick="cancel()">撤销一步</li>
-        <li onclick="reset()">重新上传</li>
-    </ul>
-    <!-- <script src="./js/JszipTool.js"></script>
-    <script src="./js/cmd.js"></script>
-    <script src="./js/AltasTool.js"></script>
-    <script src="./js/clip.js"></script>
-    <script src="./js/Elastic.js"></script>
-    <script src="./js/index.js"></script> -->
-    <script src="bundle.js"></script>
-    <script>
-    </script>
-</body>
-</html>
+        }</style></head><body><canvas id="canvas"></canvas><div id="menu"><div style="position:fixed;top:0px;left:0px;color: blue;">Author doudou</div><div style="position: absolute;top: 50px;"><div style="color: crimson;">说明<br>点击上传图片，选择一张需要裁切的图集<br>鼠标左键框选需要合并的图片<br>鼠标右键呼出菜单<br></div><div style="position: relative;top: 50px; width: 100px;height:50px;background-color: deepskyblue;border-radius: 5px;"><div style="color: white;text-align: center;line-height: 50px;">上传图片</div><input id="upload" type="file" name="" id="" accept="image/png" style="position: absolute;top:0;width: 100%;height:100%;opacity: 0;" onchange="loadPng(this)"/></div></div></div><ul id="contextmenu"><li onclick="downloadImg()">下载此图片</li><li onclick="downloadAllImg()">下载所有图片</li><li onclick="cancel()">撤销一步</li><li onclick="reset()">重新上传</li></ul><script></script><script src="bundle.js"></script></body></html>

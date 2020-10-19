@@ -1,4 +1,5 @@
 const path = require("path")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
 const BASE_PATH = "./public/js/"
 module.exports = {
     entry:[
@@ -15,5 +16,13 @@ module.exports = {
     output:{
         path:path.resolve(__dirname,"dist"),
         filename:"bundle.js"
-    }
+    },
+    plugins:[
+        new HtmlWebpackPlugin({
+            template:"public/index.html",
+            title:"拆图小工具",
+            filename:"index.html"
+        })
+    ]
+
 }
