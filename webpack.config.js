@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 const BASE_PATH = "./public/js/"
 module.exports = {
     mode:"development",
-    devtool:"source-map",
     entry:[
         BASE_PATH + 'jszip.min.js'
         ,BASE_PATH + 'FileSaver.js'
@@ -32,6 +31,9 @@ module.exports = {
             use: 'babel-loader',
             exclude: /node_modules/
         }]
+    },
+    resolve:{
+        
     },
     devServer:{
         host:"localhost",
