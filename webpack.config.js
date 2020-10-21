@@ -2,6 +2,8 @@ const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const BASE_PATH = "./public/js/"
 module.exports = {
+    mode:"development",
+    devtool:"source-map",
     entry:[
         BASE_PATH + 'jszip.min.js'
         ,BASE_PATH + 'FileSaver.js'
@@ -23,6 +25,16 @@ module.exports = {
             title:"拆图小工具",
             filename:"index.html"
         })
-    ]
-
+    ],
+    module: {
+        rules: [{
+            test: /\.js$/,
+            use: 'babel-loader',
+            exclude: /node_modules/
+        }]
+    },
+    devServer:{
+        host:"localhost",
+        port:3000
+    }
 }
